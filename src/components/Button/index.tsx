@@ -2,15 +2,18 @@ import React from "react";
 import { JsxElement } from "typescript";
 import style from './Button.module.scss';
 
-class Button extends React.Component<{children?: React.ReactNode, type?: "button" | "submit" | "reset" | undefined}> {
-    render(): React.ReactNode {
-        const { type = "button" } = this.props;
-        return ( 
-            <button type={type} className={style.botao}>
-                {this.props.children}
-            </button>
-        )
-    }
+interface Props {
+    children?: React.ReactNode, 
+    type?: "button" | "submit" | "reset" | undefined, 
+    onClick?: () => void
+}
+
+function Button({onClick, type, children}: Props) {
+    return (
+        <button onClick={onClick} type={type} className={style.botao}>
+            {children}
+        </button>
+    )
 }
 
 export default Button;
